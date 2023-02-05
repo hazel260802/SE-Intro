@@ -22,7 +22,6 @@ public class HomeCotroller {
         this.nhanKhauTamTruLb = nhanKhauTamTruLb;
         this.nhanKhauTamVangLb = nhanKhauTamVangLb;
     }
-    
     public void setData() {
         try {
             Connection connection = MysqlConnection.getMysqlConnection();
@@ -42,7 +41,7 @@ public class HomeCotroller {
             }
             preparedStatement.close();
             
-            query = "SELECT COUNT(*) AS tong FROM tam_tru WHERE denNgay < NOW()";
+            query = "SELECT COUNT(*) AS tong FROM tam_tru WHERE denNgay > NOW()";
             preparedStatement = (PreparedStatement)connection.prepareStatement(query);
             rs = preparedStatement.executeQuery();
             while (rs.next()){
@@ -50,7 +49,7 @@ public class HomeCotroller {
             }
             preparedStatement.close();
             
-            query = "SELECT COUNT(*) AS tong FROM tam_vang WHERE denNgay < NOW()";
+            query = "SELECT COUNT(*) AS tong FROM tam_vang WHERE denNgay > NOW()";
             preparedStatement = (PreparedStatement)connection.prepareStatement(query);
             rs = preparedStatement.executeQuery();
             while (rs.next()){
@@ -59,6 +58,7 @@ public class HomeCotroller {
             preparedStatement.close();
             
             connection.close();
+            Connection conn = MysqlConnection.getMysqlConnection();
         } catch (Exception e) {
         }
     }

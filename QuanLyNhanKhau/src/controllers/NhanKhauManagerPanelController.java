@@ -123,7 +123,7 @@ public class NhanKhauManagerPanelController {
         jpnView.setLayout(new BorderLayout());
         jpnView.add(scroll);
         jpnView.validate();
-        jpnView.repaint();
+        jpnView.repaint(); 
     }
 
     public void setParentJFrame(JFrame parentJFrame) {

@@ -11,9 +11,11 @@ public class CuocHopModel {
     private Date thoiGianTaoLichHop;
     private String diaDiem;
     private String noiDungChinh;
-    private UserMoldel nguoiTaoCuocHop;
+    private String nguoiTaoCuocHop;
+    private String trangThai;
 
-    public CuocHopModel(int ID, String maCuocHop, Date thoiGianHop, Date thoiGianTaoLichHop, String diaDiem, String noiDungChinh, UserMoldel nguoiTaoCuocHop) {
+    public CuocHopModel(int ID, String maCuocHop, Date thoiGianHop, Date thoiGianTaoLichHop, 
+            String diaDiem, String noiDungChinh, String nguoiTaoCuocHop, String trangThai) {
         this.ID = ID;
         this.maCuocHop = maCuocHop;
         this.thoiGianHop = thoiGianHop;
@@ -21,8 +23,10 @@ public class CuocHopModel {
         this.diaDiem = diaDiem;
         this.noiDungChinh = noiDungChinh;
         this.nguoiTaoCuocHop = nguoiTaoCuocHop;
+        this.trangThai = trangThai;
     }
-
+    public CuocHopModel(){
+    }
     public int getID() {
         return ID;
     }
@@ -71,12 +75,20 @@ public class CuocHopModel {
         this.noiDungChinh = noiDungChinh;
     }
 
-    public UserMoldel getNguoiTaoCuocHop() {
+    public String getNguoiTaoCuocHop() {
         return nguoiTaoCuocHop;
     }
 
-    public void setNguoiTaoCuocHop(UserMoldel nguoiTaoCuocHop) {
+    public void setNguoiTaoCuocHop(String nguoiTaoCuocHop) {
         this.nguoiTaoCuocHop = nguoiTaoCuocHop;
+    }
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
     }
     
     

@@ -45,10 +45,10 @@ public class LoginUI extends javax.swing.JFrame {
         try {
             if (this.cont.login(userName, password)) {
                 dispose();
-                MainFrame mainFrame = new MainFrame();
-                mainFrame.setLocationRelativeTo(null);
-                mainFrame.setResizable(false);
-                mainFrame.setVisible(true);
+                HomePage homeFrame = new HomePage();
+                homeFrame.setLocationRelativeTo(null);
+                homeFrame.setResizable(false);
+                homeFrame.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Sai thong tin dang nhap", "Warning", JOptionPane.WARNING_MESSAGE);
             }

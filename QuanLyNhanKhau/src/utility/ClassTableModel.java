@@ -3,6 +3,7 @@ package utility;
 import Bean.HoKhauBean;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import models.CuocHopModel;
 import models.GiaDinhModel;
 import models.NhanKhauModel;
 import models.TieuSuModel;
@@ -39,7 +40,7 @@ public class ClassTableModel {
         });
         return dtm;
     }
-    // table cho tieusu
+    // table cho tieu su
     public DefaultTableModel setTableTieuSu(List<TieuSuModel> tieuSu, String[] listColumn) {
         final int column = listColumn.length;
         
@@ -134,6 +135,34 @@ public class ClassTableModel {
             obj[2] = item.getChuHo().getHoTen();
             obj[3] = item.getHoKhauModel().getDiaChi();
             obj[4] = item.getHoKhauModel().getNgayLap();
+            dtm.addRow(obj);
+        });
+        return dtm;
+    }
+    
+        public DefaultTableModel setTableCuocHop(List<CuocHopModel> listItem, String[] listColumn) {
+        final int columns = listColumn.length;
+        DefaultTableModel dtm = new DefaultTableModel()  {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return super.isCellEditable(row, column); //To change body of generated methods, choose Tools | Templates.
+            }
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnIndex == 5 ? Boolean.class : String.class;
+            }
+        };
+        dtm.setColumnIdentifiers(listColumn);
+        Object[] obj;
+        obj = new Object[columns];
+        listItem.forEach((CuocHopModel item) -> {
+            obj[0] = item.getID();
+            obj[1] = item.getThoiGianHop();
+            obj[2] = item.getDiaDiem();
+            obj[3] = item.getNoiDungChinh();
+            java.sql.Date now = new java.sql.Date(quanlynhankhau.QuanLyNhanKhau.calendar.getTime().getTime());
+            if(item.getThoiGianHop().compareTo(now) >= 0) obj[4] = "Chưa diễn ra";
+            else obj[4]= "Đã diễn ra";
             dtm.addRow(obj);
         });
         return dtm;

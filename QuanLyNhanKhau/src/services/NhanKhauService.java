@@ -93,18 +93,19 @@ public class NhanKhauService {
                 preparedStatement.close();
             }
             connection.close();
+            Connection conn = MysqlConnection.getMysqlConnection();
         } catch (Exception e) {
             this.exceptionHandle(e.getMessage());
         }
         return nhanKhauBean;
     }
     
-     // lay danh sach 10 nhan khau moi duoc them vao
+     // lay danh sach nhan khau duoc them vao
     public List<NhanKhauBean> getListNhanKhau() {
         List<NhanKhauBean> list = new ArrayList<>();
         try {
             Connection connection = MysqlConnection.getMysqlConnection();
-            String query = "SELECT * FROM nhan_khau INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau ORDER BY ngayTao DESC LIMIT 0, 10";
+            String query = "SELECT * FROM nhan_khau INNER JOIN chung_minh_thu ON nhan_khau.ID = chung_minh_thu.idNhanKhau ORDER BY ngayTao DESC";
             PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
@@ -124,6 +125,7 @@ public class NhanKhauService {
             }
             preparedStatement.close();
             connection.close();
+            Connection conn = MysqlConnection.getMysqlConnection();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

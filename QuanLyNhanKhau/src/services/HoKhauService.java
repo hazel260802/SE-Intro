@@ -53,6 +53,7 @@ public class HoKhauService {
         }
         preparedStatement.close();
         connection.close();
+        Connection conn = MysqlConnection.getMysqlConnection();
         return true;
     }
     
@@ -75,13 +76,13 @@ public class HoKhauService {
         return true;
     }
      
-    // lay ra 10 ho khau
+    // lay ra danh sach ho khau
     public List<HoKhauBean> getListHoKhau() {
         List<HoKhauBean> list = new ArrayList<>();
         
         try {
             Connection connection = MysqlConnection.getMysqlConnection();
-            String query = "SELECT * FROM ho_khau INNER JOIN nhan_khau ON ho_khau.idChuHo = nhan_khau.ID ORDER BY ngayTao DESC LIMIT 0, 10";
+            String query = "SELECT * FROM ho_khau INNER JOIN nhan_khau ON ho_khau.idChuHo = nhan_khau.ID ORDER BY ngayTao DESC";
             PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
@@ -137,6 +138,7 @@ public class HoKhauService {
             }
             preparedStatement.close();
             connection.close();
+            Connection conn = MysqlConnection.getMysqlConnection();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -210,6 +212,7 @@ public class HoKhauService {
             }
             preparedStatement.close();
             connection.close();
+            Connection conn = MysqlConnection.getMysqlConnection();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
