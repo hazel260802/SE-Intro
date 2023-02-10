@@ -118,7 +118,7 @@ public class MainLichHopController {
         public void mouseClicked(MouseEvent e) {
             switch(kind) {
                 case "QuanLy":
-                    view = new HomePagePanel();
+                    view = new HomePageLichHop();
                     break;
                 case "QuanLyLichHop":
                     view = new QuanLyLichHop(this.jfrMain);

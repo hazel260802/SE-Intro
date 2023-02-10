@@ -5,7 +5,7 @@
 package views.LichHopManagerFrame;
 
 import controllers.LichHopManagerController.TaoLichHopController;
-import controllers.LichHopPanelController;
+import controllers.LichHopManagerController.LichHopPanelController;
 import controllers.LoginController;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

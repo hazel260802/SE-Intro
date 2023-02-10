@@ -44,7 +44,7 @@ public class HomePageController {
             }
             preparedStatement.close();
             
-            query = "SELECT COUNT(*) AS tong FROM tam_tru WHERE denNgay > NOW()";
+            query = "SELECT COUNT(*) AS tong FROM ho_khau WHERE soLanThamGiaHop >= 5";
             preparedStatement = (PreparedStatement)connection.prepareStatement(query);
             rs = preparedStatement.executeQuery();
             while (rs.next()){

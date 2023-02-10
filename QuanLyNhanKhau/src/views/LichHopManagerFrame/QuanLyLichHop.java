@@ -4,7 +4,7 @@
  */
 package views.LichHopManagerFrame;
 
-import controllers.LichHopPanelController;
+import controllers.LichHopManagerController.LichHopPanelController;
 import javax.swing.JFrame;
 
 /**

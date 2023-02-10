@@ -12,10 +12,10 @@ public class CuocHopModel {
     private String diaDiem;
     private String noiDungChinh;
     private String nguoiTaoCuocHop;
-    private String trangThai;
+    private int soNguoiThamGia;
 
     public CuocHopModel(int ID, String maCuocHop, Date thoiGianHop, Date thoiGianTaoLichHop, 
-            String diaDiem, String noiDungChinh, String nguoiTaoCuocHop, String trangThai) {
+            String diaDiem, String noiDungChinh, String nguoiTaoCuocHop, int soNguoiThamGia) {
         this.ID = ID;
         this.maCuocHop = maCuocHop;
         this.thoiGianHop = thoiGianHop;
@@ -23,7 +23,7 @@ public class CuocHopModel {
         this.diaDiem = diaDiem;
         this.noiDungChinh = noiDungChinh;
         this.nguoiTaoCuocHop = nguoiTaoCuocHop;
-        this.trangThai = trangThai;
+        this.soNguoiThamGia = soNguoiThamGia;
     }
     public CuocHopModel(){
     }
@@ -83,13 +83,15 @@ public class CuocHopModel {
         this.nguoiTaoCuocHop = nguoiTaoCuocHop;
     }
 
-    public String getTrangThai() {
-        return trangThai;
+    public int getSoNguoiThamGia() {
+        return soNguoiThamGia;
     }
 
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
+    public void setSoNguoiThamGia(int soNguoiThamGia) {
+        this.soNguoiThamGia = soNguoiThamGia;
     }
+
+    
     
     
 }

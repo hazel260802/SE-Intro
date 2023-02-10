@@ -37,8 +37,16 @@ public class LichHopService {
                 cuocHop.setThoiGianTaoLichHop(rs.getDate("thoiGianTaoLichHop"));
                 cuocHop.setDiaDiem(rs.getString("diaDiem"));
                 cuocHop.setNoiDungChinh(rs.getString("noiDungChinh"));
-                cuocHop.setTrangThai(rs.getString("trangThai"));
                 list.add(cuocHop);
+            }
+            preparedStatement.close();
+            for(CuocHopModel cuocHop : list){
+                query = "SELECT COUNT(*) AS tong FROM thamGiaHop WHERE idCuocHop = " + cuocHop.getID();
+                preparedStatement = (PreparedStatement)connection.prepareStatement(query);
+                rs = preparedStatement.executeQuery();
+                while(rs.next()){
+                    cuocHop.setSoNguoiThamGia(rs.getInt("tong"));
+                }
             }
             preparedStatement.close();
             connection.close();
@@ -48,6 +56,32 @@ public class LichHopService {
         return list;
     }
     
+        public List<CuocHopModel> getListCuocHopSapToi(){
+        List<CuocHopModel> list = new ArrayList<>();
+        try{
+            Connection connection = MysqlConnection.getMysqlConnection();
+            String query = "SELECT * FROM cuoc_hop WHERE thoiGianHop > NOW()";
+            PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            int idCuocHop = -1;
+            while (rs.next()){
+                CuocHopModel cuocHop = new CuocHopModel();
+                idCuocHop = rs.getInt("ID");
+                cuocHop.setID(idCuocHop);
+                cuocHop.setMaCuocHop(rs.getString("maCuocHop"));
+                cuocHop.setThoiGianHop(rs.getDate("thoiGianHop"));
+                cuocHop.setThoiGianTaoLichHop(rs.getDate("thoiGianTaoLichHop"));
+                cuocHop.setDiaDiem(rs.getString("diaDiem"));
+                cuocHop.setNoiDungChinh(rs.getString("noiDungChinh"));
+                list.add(cuocHop);
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception e) {
+            this.exceptionHandle(e.getMessage());
+        }
+        return list;
+    }
         /*
      * ham tim kiem cuoc hop theo noi dung
      */

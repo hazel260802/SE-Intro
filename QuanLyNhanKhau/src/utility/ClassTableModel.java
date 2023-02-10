@@ -167,4 +167,32 @@ public class ClassTableModel {
         });
         return dtm;
     }
+    
+        public DefaultTableModel setTableCuocHopSapToi(List<CuocHopModel> listItem, String[] listColumn) {
+        final int columns = listColumn.length;
+        DefaultTableModel dtm = new DefaultTableModel()  {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return super.isCellEditable(row, column); //To change body of generated methods, choose Tools | Templates.
+            }
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnIndex == 5 ? Boolean.class : String.class;
+            }
+        };
+        dtm.setColumnIdentifiers(listColumn);
+        Object[] obj;
+        obj = new Object[columns];
+        for(int i = 0; i < listItem.size(); i++) {
+            CuocHopModel item = listItem.get(i);
+            obj[0] = i + 1;
+            obj[1] = item.getThoiGianHop();
+            obj[2] = item.getDiaDiem();
+            obj[3] = item.getNoiDungChinh();
+            obj[4] = item.getSoNguoiThamGia();
+            dtm.addRow(obj);
+        };
+        return dtm;
+    }
+     
 }
