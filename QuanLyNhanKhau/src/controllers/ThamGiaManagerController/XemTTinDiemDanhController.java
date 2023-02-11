@@ -4,28 +4,31 @@
  */
 package controllers.ThamGiaManagerController;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import models.CuocHopModel;
 import models.NhanKhauModel;
 import services.LichHopService;
+import services.MysqlConnection;
 import utility.ClassTableModel;
 import views.infoViews.InfoJframe;
 
@@ -37,9 +40,11 @@ public class XemTTinDiemDanhController {
 
     private JPanel tableTopJpn;
     private JPanel tableBotJpn;
+    private JTextField idCuocHopJtf;
     private JTextField maCuocHopJtf;
-    private JTextField thoiGianHopJtf;
+    private JDateChooser thoiGianHopJtf;
     private JTextField diaDiemHopJtf;
+    private JTextField noiDungHopJtf;
     private JButton taoDSBtn;
     private JButton themTTBtn;
     private JButton cancelBtn;
@@ -49,9 +54,10 @@ public class XemTTinDiemDanhController {
     
     private List<CuocHopModel> listCuocHop;
     private List<NhanKhauModel> listNhanKhauThamGia = new ArrayList<>();
+    private NhanKhauModel nhanKhauSelected = new NhanKhauModel();
     private final ClassTableModel tableModelNhanKhau = new ClassTableModel();
-    private final String[] COLUMNS_NK = {"ID", "Họ tên", "Ngày sinh","Giới tính","Địa chỉ hiện nay"};
-    private final String[] COLUMNS_CH = {"STT","Thời gian họp", "Địa điểm", "Nội dung họp","DSDD"};
+    private final String[] COLUMNS_NK = {"ID", "Họ tên", "Ngày sinh","Giới tính","Mã Hộ Khẩu"};
+    private final String[] COLUMNS_CH = {"STT","Thời gian họp", "Địa điểm", "Nội dung họp","Trạng thái"};
     private CuocHopModel cuocHopSelected;
     
     public XemTTinDiemDanhController(JFrame XemTtinDiemDanhJFrame) {
@@ -109,13 +115,18 @@ public class XemTTinDiemDanhController {
                     infoJframe.setVisible(true);
                 } else {
                     // selected data
-                    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-                    String strDate = dateFormat.format(temp.getThoiGianHop());
                     cuocHopSelected = temp;
+                    idCuocHopJtf.setText(String.valueOf(temp.getID()));
                     maCuocHopJtf.setText(temp.getMaCuocHop());
-                    thoiGianHopJtf.setText(strDate);
+                    thoiGianHopJtf.setDate(temp.getThoiGianHop());
                     diaDiemHopJtf.setText(temp.getDiaDiem());
-//                    setDataChoose();
+                    noiDungHopJtf.setText(temp.getNoiDungChinh());
+                    
+                    maCuocHopJtf.setEditable(false);
+                    idCuocHopJtf.setEditable(false);
+                    diaDiemHopJtf.setEditable(false);
+                    noiDungHopJtf.setEditable(false);
+                    setDataChoose();
                 }
             }
             
@@ -124,6 +135,9 @@ public class XemTTinDiemDanhController {
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);
         scroll.setPreferredSize(tableTopJpn.getSize());
+        table.getColumnModel().getColumn(0).setMaxWidth(30);
+        table.getColumnModel().getColumn(0).setMinWidth(30);
+        table.getColumnModel().getColumn(0).setPreferredWidth(30);
         tableTopJpn.removeAll();
         tableTopJpn.setLayout(new BorderLayout());
         tableTopJpn.add(scroll);
@@ -133,44 +147,83 @@ public class XemTTinDiemDanhController {
     
     public void setDataChoose() {
         listNhanKhauThamGia = new ArrayList<>();
-//        for (int i = 0; i < cuocHopSelected.getListNhanKhauModels().size(); i++) {
-//            MemOfFamily temp = new MemOfFamily();
-//            temp.getNhanKhau().setNhanKhauModel(hoKhauSelected.getListNhanKhauModels().get(i));
-//            temp.setThanhVienCuaHoModel(hoKhauSelected.getListThanhVienCuaHo().get(i));
-//            listThanhVien.add(temp);
-//        }
-//        DefaultTableModel model = tableModelHoKhau.setTableMember(listThanhVien, COLUMNS_NK);
-//        
-//        JTable table = new JTable(model) {
-//            @Override
-//            public boolean editCellAt(int row, int column, EventObject e) {
-//                return false;
-//            }
-//            
-//        };
-//        table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
-//        table.getTableHeader().setPreferredSize(new Dimension(100, 30));
-//        table.setRowHeight(30);
-//        table.validate();
-//        table.repaint();
-//        table.setFont(new Font("Arial", Font.PLAIN, 14));
-//        
-//        table.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                thanhVienSeclected = listThanhVien.get(table.getSelectedRow());
-//            }
-//            
-//        });
-//        
-//        JScrollPane scroll = new JScrollPane();
-//        scroll.getViewport().add(table);
-//        scroll.setPreferredSize(tableTopJpn.getSize());
-//        tableBotJpn.removeAll();
-//        tableBotJpn.setLayout(new BorderLayout());
-//        tableBotJpn.add(scroll);
-//        tableBotJpn.validate();
-//        tableBotJpn.repaint();
+        listNhanKhauThamGia = lichHopService.getListNhanKhauThamGia(cuocHopSelected.getID());
+        DefaultTableModel model;
+        model = ClassTableModel.setTableThamGiaHop(listNhanKhauThamGia, COLUMNS_NK);
+        JTable table = new JTable(model) {
+            @Override
+            public boolean editCellAt(int row, int column, EventObject e) {
+                return false;
+            }
+            
+        };
+        table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
+        table.getTableHeader().setPreferredSize(new Dimension(100, 30));
+        table.setRowHeight(30);
+        table.validate();
+        table.repaint();
+        table.setFont(new Font("Arial", Font.PLAIN, 14));
+        
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                nhanKhauSelected = listNhanKhauThamGia.get(table.getSelectedRow());
+            }
+            
+        });
+        
+        JScrollPane scroll = new JScrollPane();
+        scroll.getViewport().add(table);
+        scroll.setPreferredSize(tableBotJpn.getSize());
+        table.getColumnModel().getColumn(0).setMaxWidth(30);
+        table.getColumnModel().getColumn(0).setMinWidth(30);
+        table.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tableBotJpn.removeAll();
+        tableBotJpn.setLayout(new BorderLayout());
+        tableBotJpn.add(scroll);
+        tableBotJpn.validate();
+        tableBotJpn.repaint();
+    }
+    public boolean xoaDiemDanh() throws SQLException, ClassNotFoundException{
+        try{
+        Connection connection = MysqlConnection.getMysqlConnection();
+        String query = "DELETE FROM thamGiaHop where idNhanKhau = " + nhanKhauSelected.getID() +
+                " and idCuocHop = " + cuocHopSelected.getID();
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.execute();
+        query = "SELECT * FROM thamGiaHop join thanh_vien_cua_ho on thamGiaHop.idNhanKhau = thanh_vien_cua_ho.idNhanKhau where "
+                + "idCuocHop = " + cuocHopSelected.getID() +  " and idHoKhau = (select idHoKhau from thanh_vien_cua_ho where idNhanKhau = " + nhanKhauSelected.getID() + ")";
+        preparedStatement = connection.prepareStatement(query);
+        ResultSet rs = preparedStatement.executeQuery();
+        int count = 0;
+        while(rs.next()){
+            count++;
+        }
+        if(count == 0){
+            query = "UPDATE ho_khau set soLanThamGiaHop = soLanThamGiaHop - 1 where ID = (select idHoKhau from thanh_vien_cua_ho where idNhanKhau = " + nhanKhauSelected.getID() + ")";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+        }
+        connection.close();
+        refreshData();
+        } catch(Error e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Warning", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    
+    public void refreshData() {
+        this.listNhanKhauThamGia = this.lichHopService.getListNhanKhauThamGia(cuocHopSelected.getID());
+        setDataChoose();
+    }
+    
+    public JTextField getIdCuocHopJtf() {
+        return idCuocHopJtf;
+    }
+
+    public void setIdCuocHopJtf(JTextField idCuocHopJtf) {
+        this.idCuocHopJtf = idCuocHopJtf;
     }
 
     public JTextField getMaCuocHopJtf() {
@@ -181,14 +234,30 @@ public class XemTTinDiemDanhController {
         this.maCuocHopJtf = maCuocHopJtf;
     }
 
-    public JTextField getThoiGianHopJtf() {
+    public JDateChooser getThoiGianHopJtf() {
         return thoiGianHopJtf;
     }
 
-    public void setThoiGianHopJtf(JTextField thoiGianHopJtf) {
+    public void setThoiGianHopJtf(JDateChooser thoiGianHopJtf) {
         this.thoiGianHopJtf = thoiGianHopJtf;
     }
 
+    public JTextField getNoiDungHopJtf() {
+        return noiDungHopJtf;
+    }
+
+    public void setNoiDungHopJtf(JTextField noiDungHopJtf) {
+        this.noiDungHopJtf = noiDungHopJtf;
+    }
+
+    public NhanKhauModel getNhanKhauSelected() {
+        return nhanKhauSelected;
+    }
+
+    public void setNhanKhauSelected(NhanKhauModel nhanKhauSelected) {
+        this.nhanKhauSelected = nhanKhauSelected;
+    }
+    
     public JTextField getDiaDiemHopJtf() {
         return diaDiemHopJtf;
     }

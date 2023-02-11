@@ -17,6 +17,9 @@ public class ThamGiaHopModel {
         this.idNhanKhau = idNhanKhau;
     }
 
+    public ThamGiaHopModel() {
+    }
+    
     public int getIdCuocHop() {
         return idCuocHop;
     }

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import models.CuocHopModel;
+import models.NhanKhauModel;
 /**
  *
  * @author huuph
@@ -77,6 +78,28 @@ public class LichHopService {
             }
             preparedStatement.close();
             connection.close();
+        } catch (Exception e) {
+            this.exceptionHandle(e.getMessage());
+        }
+        return list;
+    }
+        
+    public List<NhanKhauModel> getListNhanKhauThamGia(int idCuocHop){
+        List<NhanKhauModel> list = new ArrayList<>();
+        try{
+            Connection connection = MysqlConnection.getMysqlConnection();
+            String query = "select * from `nhan_khau` inner join `thamGiaHop` "
+                    + "on nhan_khau.ID = thamGiaHop.idNhanKhau where idCuocHop = " + idCuocHop;
+            PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                NhanKhauModel nhanKhau = new NhanKhauModel();
+                nhanKhau.setID(rs.getInt("ID"));
+                nhanKhau.setHoTen(rs.getString("hoTen"));
+                nhanKhau.setNamSinh(rs.getDate("namSinh"));
+                nhanKhau.setGioiTinh(rs.getString("gioiTinh"));
+                list.add(nhanKhau);
+            }
         } catch (Exception e) {
             this.exceptionHandle(e.getMessage());
         }

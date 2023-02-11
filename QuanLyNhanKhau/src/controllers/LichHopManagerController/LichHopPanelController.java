@@ -9,10 +9,16 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,6 +28,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import models.CuocHopModel;
 import services.LichHopService;
+import services.MysqlConnection;
 import utility.ClassTableModel;
 
 /**
@@ -38,6 +45,7 @@ public class LichHopPanelController {
     private LichHopService lichHopService;
     private List<CuocHopModel> listCuocHop;
     private ClassTableModel classTableModel = null;
+    private CuocHopModel temp = new CuocHopModel();
     private final String[] COLUMNS = {"STT", "Thời gian họp", "Địa điểm", "Nội dung họp","Trạng thái"};
     private JFrame parentJFrame;
 
@@ -47,11 +55,10 @@ public class LichHopPanelController {
         classTableModel = new ClassTableModel();
         this.lichHopService = new LichHopService();
         this.listCuocHop = this.lichHopService.getListCuocHop();
-        System.out.println("controllers.LichHopPanelController.<init>()");
         initAction();
     }
     
-        public void initAction(){
+    public void initAction(){
         this.jtfSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -104,12 +111,8 @@ public class LichHopPanelController {
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                JOptionPane.showConfirmDialog(null, table.getSelectedRow());
-                if (e.getClickCount() > 1) {
-                    CuocHopModel temp = listCuocHop.get(table.getSelectedRow());
-                }
-            }
-            
+                    temp = listCuocHop.get(table.getSelectedRow());
+            }      
         });
         
         JScrollPane scroll = new JScrollPane();
@@ -121,7 +124,25 @@ public class LichHopPanelController {
         jpnView.validate();
         jpnView.repaint(); 
     }
-
+    
+    public boolean deleteMeeting() throws SQLException, ClassNotFoundException{
+        java.sql.Date now = new java.sql.Date(quanlynhankhau.QuanLyNhanKhau.calendar.getTime().getTime());
+        if(temp.getThoiGianHop().compareTo(now) < 0){
+            JOptionPane.showMessageDialog(null, "Cuộc họp đã diễn ra. Không thể xóa!", "Warning", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(temp == null) return false;
+        try{
+        Connection connection = MysqlConnection.getMysqlConnection();
+        String query = "DELETE FROM cuoc_hop where ID = " + temp.getID();
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.execute();
+        connection.close();
+        } catch(Error e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Warning", JOptionPane.ERROR_MESSAGE);
+        }
+        return true;
+    }
     public void setParentJFrame(JFrame parentJFrame) {
         this.parentJFrame = parentJFrame;
     }
