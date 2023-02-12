@@ -13,6 +13,7 @@ public class CuocHopModel {
     private String noiDungChinh;
     private String nguoiTaoCuocHop;
     private int soNguoiThamGia;
+    private String trangThai;
 
     public CuocHopModel(int ID, String maCuocHop, Date thoiGianHop, Date thoiGianTaoLichHop, 
             String diaDiem, String noiDungChinh, String nguoiTaoCuocHop, int soNguoiThamGia) {
@@ -90,8 +91,14 @@ public class CuocHopModel {
     public void setSoNguoiThamGia(int soNguoiThamGia) {
         this.soNguoiThamGia = soNguoiThamGia;
     }
-
+    public void setTrangThai(){ 
+        Date currentDate = new Date(System.currentTimeMillis());
+        if(thoiGianHop.before(currentDate)){
+            trangThai = "Đã diễn ra";
+        } else trangThai = "Chưa diễn ra";
+    }
     
-    
-    
+    public String getTrangThai(){
+        return trangThai;
+    }  
 }

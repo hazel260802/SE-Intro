@@ -280,4 +280,43 @@ public class HoKhauService {
             System.out.println(e.getMessage());
         }
     }
+    public List<HoKhauBean> statisticHoKhau(int tuBuoi, int denBuoi) {
+        List<HoKhauBean> list = new ArrayList<>();
+        
+        String query = "SELECT * FROM ho_khau "
+                    +" WHERE soLanThamGiaHop >= "
+                    + tuBuoi
+                    + " AND soLanThamGiaHop <= "
+                    + denBuoi
+                    +" group by ID";
+         try {
+            Connection connection = MysqlConnection.getMysqlConnection();
+            PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            int idHoKhau = -1;
+            while (rs.next()){
+                HoKhauBean hoKhauBean = new HoKhauBean();
+                HoKhauModel hoKhau = hoKhauBean.getHoKhauModel();
+                
+                idHoKhau = rs.getInt("ID");
+                hoKhau.setID(idHoKhau);
+                hoKhau.setMaHoKhau(rs.getString("maHoKhau"));
+                hoKhau.setIdChuHo(rs.getInt("idChuHo"));
+                hoKhau.setMaKhuVuc(rs.getString("maKhuVuc"));
+                hoKhau.setDiaChi(rs.getString("diaChi"));
+                hoKhau.setNgayLap(rs.getDate("ngayLap"));
+                hoKhau.setNgayChuyenDi(rs.getDate("ngayChuyenDi"));
+                hoKhau.setLyDoChuyen(rs.getString("lyDoChuyen"));
+                hoKhau.setNguoiThucHien(rs.getInt("nguoiThucHien"));
+                hoKhau.setSoLanThamGiaHop(rs.getInt("soLanThamGiaHop"));
+                
+                list.add(hoKhauBean);
+            }
+            preparedStatement.close();
+        } catch (Exception e) {
+             System.out.println(e.getMessage());
+        }
+        
+        return list;
+    }
 }

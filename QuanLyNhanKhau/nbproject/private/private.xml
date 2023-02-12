@@ -3,43 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/NhanKhauManagerFrame/AddNewPeopleJFrame.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/MainController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/MainFrameLichHop.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/ThamGiaManagerController/XemTTinDiemDanhController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/NhanKhauManagerController/AddNewController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/models/NhanKhauModel.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/HomePage.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/LichHopManagerFrame/QuanLyLichHop.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/ThongKePanelController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/LichHopManagerController/LichHopPanelController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/HomePagePanel.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/services/NhanKhauService.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/NhanKhauManagerPanelController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/ThamGiaManagerFrame/XemThongTinDiemDanh.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/ThamGiaManagerFrame/ThemThongTinDiemDanh.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/utility/ClassTableModel.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/NhanKhauManagerController/KhaiTuController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/HomePageLichHop.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/LichHopManagerController/TaoLichHopController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/models/CuocHopModel.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/NhanKhauManagePanel.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/MainLichHopController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/utility/TableModelHoKhau.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/HomeCotroller.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/ThongKeLichHop/ThongKeThamGia.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/ThongKePanel.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/ThamGiaManagerFrame/QuanLyThamGia.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/services/HoKhauService.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/HomePageController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/ThongKeLichHop/ThongKe.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/ThamGiaManagerController/ThamGiaPanelController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/ThamGiaManagerController/ThemTTinDiemDanhController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/ThongKeLichHop/ThongKeThongTin.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/controllers/HoKhauManagerController/TachHoKhauController.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/LoginUI.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/views/MainFrame.java</file>
-            <file>file:/E:/OneDrive/Documents/Downloads/QuanLyNhanKhau/QuanLyNhanKhau/src/services/LichHopService.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/controllers/LichHopManagerController/LichHopPanelController.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/controllers/ThamGiaManagerController/ThemTTinDiemDanhController.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/models/HoKhauModel.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/Bean/HoKhauBean.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/views/ThongKeLichHop/ThongKeThamGia.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/Bean/MemOfFamily.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/models/ThanhVienCuaHoModel.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/services/LichHopService.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/utility/ClassTableModel.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/controllers/ThamGiaManagerController/ThamGiaPanelController.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/views/ThamGiaManagerFrame/QuanLyThamGia.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/views/ThongKeLichHop/ThongKe.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/controllers/ThongKePanelController.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/models/ThamGiaHopModel.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/models/CuocHopModel.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/controllers/ThongKeLichHop/ThongKeThongTinController.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/services/HoKhauService.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/views/ThongKeLichHop/ThongKeThongTin.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/controllers/ThongKeLichHop/ThongKeThamGiaController.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/services/NhanKhauService.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/services/ThanhVienCuaHo.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects_final/SE-Intro/QuanLyNhanKhau/src/services/MysqlConnection.java</file>
         </group>
     </open-files>
 </project-private>
