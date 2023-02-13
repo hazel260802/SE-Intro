@@ -13,10 +13,28 @@ public class HoKhauModel {
     private String maKhuVuc;
     private String diaChi;
     private Date ngayLap;
-    private Date ngayChuyDi;
+    private Date ngayChuyenDi;
     private String lyDoChuyen;
     private int nguoiThucHien;
+    private int soLanThamGiaHop;
+    private String trangThai;
 
+    public Date getNgayChuyenDi() {
+        return ngayChuyenDi;
+    }
+
+    public void setNgayChuyenDi(Date ngayChuyenDi) {
+        this.ngayChuyenDi = ngayChuyenDi;
+    }
+
+    public int getSoLanThamGiaHop() {
+        return soLanThamGiaHop;
+    }
+
+    public void setSoLanThamGiaHop(int soLanThamGiaHop) {
+        this.soLanThamGiaHop = soLanThamGiaHop;
+    }
+    
     public int getID() {
         return ID;
     }
@@ -66,11 +84,11 @@ public class HoKhauModel {
     }
 
     public Date getNgayChuyDi() {
-        return ngayChuyDi;
+        return ngayChuyenDi;
     }
 
-    public void setNgayChuyDi(Date ngayChuyDi) {
-        this.ngayChuyDi = ngayChuyDi;
+    public void setNgayChuyDi(Date ngayChuyenDi) {
+        this.ngayChuyenDi = ngayChuyenDi;
     }
 
     public String getLyDoChuyen() {
@@ -89,5 +107,13 @@ public class HoKhauModel {
         this.nguoiThucHien = nguoiThucHien;
     }
     
+    public void setTrangThai(){
+        if(soLanThamGiaHop>=5){
+         trangThai = "Gia đinh văn hóa";   
+        } else trangThai = "Không";
+    }
     
+    public String getTrangThai(){
+        return trangThai;
+    }
 }

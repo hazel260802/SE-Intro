@@ -18,6 +18,7 @@ import views.HomePagePanel;
 import views.NhanKhauManagePanel;
 import views.ThongKePanel;
 import views.TimKiemPanel;
+import views.HomePage;
 
 /**
  *
@@ -42,7 +43,7 @@ public class MainController {
         jlbItem.setBackground(new Color(0));
         JPanel view = new  JPanel();
         switch(kind) {
-                case "TrangChu":
+                case "QuanLy":
                     view = new HomePagePanel();
                     break;
                 case "NhanKhau":
@@ -112,7 +113,7 @@ public class MainController {
         @Override
         public void mouseClicked(MouseEvent e) {
             switch(kind) {
-                case "TrangChu":
+                case "QuanLy":
                     view = new HomePagePanel();
                     break;
                 case "NhanKhau":

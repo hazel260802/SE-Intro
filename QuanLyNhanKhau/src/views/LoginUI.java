@@ -45,10 +45,10 @@ public class LoginUI extends javax.swing.JFrame {
         try {
             if (this.cont.login(userName, password)) {
                 dispose();
-                MainFrame mainFrame = new MainFrame();
-                mainFrame.setLocationRelativeTo(null);
-                mainFrame.setResizable(false);
-                mainFrame.setVisible(true);
+                HomePage homeFrame = new HomePage();
+                homeFrame.setLocationRelativeTo(null);
+                homeFrame.setResizable(false);
+                homeFrame.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Sai thong tin dang nhap", "Warning", JOptionPane.WARNING_MESSAGE);
             }
@@ -89,7 +89,6 @@ public class LoginUI extends javax.swing.JFrame {
         txbPasswd.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txbPasswd.setName("txtPasswd"); // NOI18N
 
-        btnLogin.setBackground(new java.awt.Color(255, 255, 255));
         btnLogin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnLogin.setText("Login");
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,7 +118,7 @@ public class LoginUI extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("@Adventure is the best way to learn");
+        jLabel4.setText("Nhóm I - CNTT VP K65");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/login.png"))); // NOI18N
 
