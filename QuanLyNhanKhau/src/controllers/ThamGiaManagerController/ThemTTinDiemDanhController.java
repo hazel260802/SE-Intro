@@ -165,6 +165,9 @@ public class ThemTTinDiemDanhController {
         preparedStatement.executeUpdate();
         rs = preparedStatement.getGeneratedKeys();
         
+        query = "UPDATE cuoc_hop set soNguoiThamGia = soNguoiThamGia + 1 where ID = " + thamGia.getIdCuocHop();
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.executeUpdate();
         connection.close();
         return true;
     }

@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.CuocHopModel;
 import models.GiaDinhModel;
+import models.HoKhauModel;
 import models.NhanKhauModel;
 import models.TieuSuModel;
 import services.MysqlConnection;
@@ -243,6 +244,86 @@ public class ClassTableModel {
         }
         dtm.addRow(obj);
     }
+        return dtm;
+    }
+    
+    public DefaultTableModel setTableThongKeThongTin(List<CuocHopModel> listItem, String[] listColumn) {
+        final int columns = listColumn.length;
+        DefaultTableModel dtm = new DefaultTableModel()  {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return super.isCellEditable(row, column); //To change body of generated methods, choose Tools | Templates.
+            }
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnIndex == 6 ? Boolean.class : String.class;
+            }
+        };
+        dtm.setColumnIdentifiers(listColumn);
+        Object[] obj;
+        obj = new Object[columns];
+        listItem.forEach((CuocHopModel item) -> {
+            obj[0] = item.getID();
+            obj[1] = item.getThoiGianHop();
+            obj[2] = item.getDiaDiem();
+            obj[3] = item.getNoiDungChinh();
+            obj[4] = item.getSoNguoiThamGia();
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+            long millis = System.currentTimeMillis();
+            java.sql.Date now = new java.sql.Date(millis);
+//            long tmp = Long.parseLong(fmt.format(item.getThoiGianHop())) - Long.parseLong(fmt.format(now));
+            if(item.getThoiGianHop().after(now)) obj[5] = "Chưa diễn ra";
+            else if(item.getThoiGianHop().before(now)) obj[5] = "Đã diễn ra";
+            else obj[5]= "Diễn ra hôm nay";
+            dtm.addRow(obj);
+        });
+        return dtm;
+    }
+    public DefaultTableModel setTableThongKeThamGia(List<HoKhauModel> listItem, String[] listColumn) {
+        final int columns = listColumn.length;
+        DefaultTableModel dtm = new DefaultTableModel()  {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return super.isCellEditable(row, column); //To change body of generated methods, choose Tools | Templates.
+            }
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnIndex == 4 ? Boolean.class : String.class;
+            }
+        };
+        dtm.setColumnIdentifiers(listColumn);
+        Object[] obj;
+        obj = new Object[columns];
+        listItem.forEach((HoKhauModel item) -> {
+            obj[0] = item.getID();
+            obj[1] = item.getMaHoKhau();
+//            obj[2] = item.getSoLanThamGiaHop();
+            try{
+                Connection connection = MysqlConnection.getMysqlConnection();
+//                String query = "SELECT COUNT(idCuochop) as soLanThamGiaHop FROM thamGiaHop,nhan_khau,thanh_vien_cua_ho\n "
+                String query = "SELECT soLanThamGiaHop FROM ho_khau"
+                +" WHERE ID = " + item.getID();
+//                +" AND thanh_vien_cua_ho.idNhanKhau=nhan_khau.ID\n"
+//                +" AND thanh_vien_cua_ho.idHoKhau = " + item.getID()
+//                +" GROUP BY idHoKhau";
+                PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()){
+                    obj[2] = rs.getInt("soLanThamGiaHop");
+                    item.setSoLanThamGiaHop(rs.getInt("soLanThamGiaHop"));
+                } 
+                preparedStatement.close();
+                connection.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            if (item.getSoLanThamGiaHop() >=5){
+                obj[3]="Gia đình văn hóa";
+            } else{
+                obj[3] = "Không";
+            }
+            dtm.addRow(obj);
+        });
         return dtm;
     }
      

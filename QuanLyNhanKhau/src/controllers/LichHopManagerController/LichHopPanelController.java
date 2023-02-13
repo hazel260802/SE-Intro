@@ -46,7 +46,7 @@ public class LichHopPanelController {
     private List<CuocHopModel> listCuocHop;
     private ClassTableModel classTableModel = null;
     private CuocHopModel temp = new CuocHopModel();
-    private final String[] COLUMNS = {"STT", "Thời gian họp", "Địa điểm", "Nội dung họp","Trạng thái"};
+    private final String[] COLUMNS = {"ID", "Thời gian họp", "Địa điểm", "Nội dung họp","Trạng thái"};
     private JFrame parentJFrame;
 
     public LichHopPanelController(JPanel jpnView, JTextField jtfSearch) {

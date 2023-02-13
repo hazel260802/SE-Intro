@@ -17,6 +17,7 @@ public class HoKhauModel {
     private String lyDoChuyen;
     private int nguoiThucHien;
     private int soLanThamGiaHop;
+    private String trangThai;
 
     public Date getNgayChuyenDi() {
         return ngayChuyenDi;
@@ -106,5 +107,13 @@ public class HoKhauModel {
         this.nguoiThucHien = nguoiThucHien;
     }
     
+    public void setTrangThai(){
+        if(soLanThamGiaHop>=5){
+         trangThai = "Gia đinh văn hóa";   
+        } else trangThai = "Không";
+    }
     
+    public String getTrangThai(){
+        return trangThai;
+    }
 }

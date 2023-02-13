@@ -51,6 +51,13 @@ public class HoKhauService {
 
             });
         }
+        String sql = "INSERT INTO thanh_vien_cua_ho(idNhanKhau, idHoKhau, quanHeVoiChuHo)" 
+                            + " values (?, ?, ?)";
+        PreparedStatement preStatement = connection.prepareStatement(sql);
+                    preStatement.setInt(1, hoKhauBean.getChuHo().getID());
+                    preStatement.setInt(2, rs.getInt(1));
+                    preStatement.setString(3, "Chủ hộ");
+                    preStatement.executeUpdate();   
         preparedStatement.close();
         connection.close();
         Connection conn = MysqlConnection.getMysqlConnection();
@@ -240,7 +247,8 @@ public class HoKhauService {
         // xoa cac thanh vien
         
         hoKhauBean.getListThanhVienCuaHo().forEach((ThanhVienCuaHoModel item) -> {
-            String sql = "DELETE FROM thanh_vien_cua_ho WHERE idNhanKhau = " + item.getIdHoKhau();
+            String sql = "DELETE FROM thanh_vien_cua_ho WHERE idNhanKhau = " + item.getIdNhanKhau()
+                    + " AND idHoKhau = " + hoKhauBean.getHoKhauModel().getID();
             try {
                 Connection connection = MysqlConnection.getMysqlConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -259,6 +267,8 @@ public class HoKhauService {
         } catch (Exception e) {
             System.out.println("services.HoKhauService.tachHoKhau()");
         } 
+        
+        
     }
     public void chuyenDi(int idhoKhau, String noiChuyenDen, String lyDoChuyen) {
         String sql = "UPDATE ho_khau SET lyDoChuyen = '"
@@ -279,5 +289,45 @@ public class HoKhauService {
             System.out.println("services.HoKhauService.chuyenDi()");
             System.out.println(e.getMessage());
         }
+    }
+    
+    public List<HoKhauBean> statisticHoKhau(int tuBuoi, int denBuoi) {
+        List<HoKhauBean> list = new ArrayList<>();
+        
+        String query = "SELECT * FROM ho_khau "
+                    +" WHERE soLanThamGiaHop >= "
+                    + tuBuoi
+                    + " AND soLanThamGiaHop <= "
+                    + denBuoi
+                    +" group by ID";
+         try {
+            Connection connection = MysqlConnection.getMysqlConnection();
+            PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            int idHoKhau = -1;
+            while (rs.next()){
+                HoKhauBean hoKhauBean = new HoKhauBean();
+                HoKhauModel hoKhau = hoKhauBean.getHoKhauModel();
+                
+                idHoKhau = rs.getInt("ID");
+                hoKhau.setID(idHoKhau);
+                hoKhau.setMaHoKhau(rs.getString("maHoKhau"));
+                hoKhau.setIdChuHo(rs.getInt("idChuHo"));
+                hoKhau.setMaKhuVuc(rs.getString("maKhuVuc"));
+                hoKhau.setDiaChi(rs.getString("diaChi"));
+                hoKhau.setNgayLap(rs.getDate("ngayLap"));
+                hoKhau.setNgayChuyenDi(rs.getDate("ngayChuyenDi"));
+                hoKhau.setLyDoChuyen(rs.getString("lyDoChuyen"));
+                hoKhau.setNguoiThucHien(rs.getInt("nguoiThucHien"));
+                hoKhau.setSoLanThamGiaHop(rs.getInt("soLanThamGiaHop"));
+                
+                list.add(hoKhauBean);
+            }
+            preparedStatement.close();
+        } catch (Exception e) {
+             System.out.println(e.getMessage());
+        }
+        
+        return list;
     }
 }

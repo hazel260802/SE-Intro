@@ -57,7 +57,7 @@ public class XemTTinDiemDanhController {
     private NhanKhauModel nhanKhauSelected = new NhanKhauModel();
     private final ClassTableModel tableModelNhanKhau = new ClassTableModel();
     private final String[] COLUMNS_NK = {"ID", "Họ tên", "Ngày sinh","Giới tính","Mã Hộ Khẩu"};
-    private final String[] COLUMNS_CH = {"STT","Thời gian họp", "Địa điểm", "Nội dung họp","Trạng thái"};
+    private final String[] COLUMNS_CH = {"ID","Thời gian họp", "Địa điểm", "Nội dung họp","Trạng thái"};
     private CuocHopModel cuocHopSelected;
     
     public XemTTinDiemDanhController(JFrame XemTtinDiemDanhJFrame) {
@@ -135,9 +135,9 @@ public class XemTTinDiemDanhController {
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);
         scroll.setPreferredSize(tableTopJpn.getSize());
-        table.getColumnModel().getColumn(0).setMaxWidth(30);
-        table.getColumnModel().getColumn(0).setMinWidth(30);
-        table.getColumnModel().getColumn(0).setPreferredWidth(30);
+        table.getColumnModel().getColumn(0).setMaxWidth(35);
+        table.getColumnModel().getColumn(0).setMinWidth(35);
+        table.getColumnModel().getColumn(0).setPreferredWidth(35);
         tableTopJpn.removeAll();
         tableTopJpn.setLayout(new BorderLayout());
         tableTopJpn.add(scroll);
@@ -200,10 +200,15 @@ public class XemTTinDiemDanhController {
             count++;
         }
         if(count == 0){
-            query = "UPDATE ho_khau set soLanThamGiaHop = soLanThamGiaHop - 1 where ID = (select idHoKhau from thanh_vien_cua_ho where idNhanKhau = " + nhanKhauSelected.getID() + ")";
+            query = "UPDATE ho_khau set soLanThamGiaHop = soLanThamGiaHop - 1 where ID = (select idHoKhau from thanh_vien_cua_ho where idNhanKhau = " + nhanKhauSelected.getID() + ")"
+                    + " and soLanThamGiaHop > 0";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeUpdate();
         }
+        
+        query = "UPDATE cuoc_hop set soNguoiThamGia = soNguoiThamGia - 1 where ID = " + cuocHopSelected.getID();
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.executeUpdate();
         connection.close();
         refreshData();
         } catch(Error e) {

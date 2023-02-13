@@ -31,7 +31,7 @@ public class ThamGiaPanelController {
     private LichHopService lichHopService;
     private List<CuocHopModel> listCuocHop;
     private ClassTableModel classTableModel = null;
-    private final String[] COLUMNS = {"STT", "Thời gian họp", "Địa điểm", "Nội dung họp","Số lượng tham gia"};
+    private final String[] COLUMNS = {"ID", "Thời gian họp", "Địa điểm", "Nội dung họp","Số lượng tham gia"};
     private JFrame parentJFrame;
 
     public ThamGiaPanelController(JPanel jpnView) {

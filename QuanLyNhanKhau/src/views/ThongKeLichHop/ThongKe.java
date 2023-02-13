@@ -4,27 +4,27 @@
  */
 package views.ThongKeLichHop;
 
+
 import javax.swing.JFrame;
+
+
 
 /**
  *
  * @author huuph
  */
 public class ThongKe extends javax.swing.JPanel {
-
+//    private ThongKeLichHopController controller;
+    private JFrame parentJFrame;
+////    private JPanel view = new JPanel();
     /**
      * Creates new form ThongKe
+     * @param parentFrame
      */
-    public ThongKe() {
-        initComponents();
-    }
-    private JFrame parentJFrame;
     public ThongKe(JFrame parentFrame) {
         this.parentJFrame = parentFrame;
         initComponents();
-//        controller = new NhanKhauManagerPanelController(tablePanel, jtfSearch);
-//        controller.setParentJFrame(parentJFrame);
-//        controller.setDataTable();
+//        controller = new ThongKeLichHopController(ThongKeThamGiaBtn,ThongKeThongTinBtn);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,75 +35,68 @@ public class ThongKe extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ThongKeThongTinBtn = new javax.swing.JButton();
+        ThongKeThamGiaBtn = new javax.swing.JButton();
 
-        jButton1.setText("Thống kê thông tin các cuộc họp");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ThongKeThongTinBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ThongKeThongTinBtn.setText("Thống kê thông tin các cuộc họp");
+        ThongKeThongTinBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ThongKeThongTinBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Thống kê tham gia của các hộ gia đình");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ThongKeThamGiaBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ThongKeThamGiaBtn.setText("Thống kê tham gia của các hộ gia đình");
+        ThongKeThamGiaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ThongKeThamGiaBtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(195, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(157, 157, 157))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(272, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ThongKeThongTinBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ThongKeThamGiaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(273, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGap(170, 170, 170)
+                .addComponent(ThongKeThongTinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(ThongKeThamGiaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(173, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ThongKeThongTinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThongKeThongTinBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        ThongKeThongTin thongKeThongTin =  new ThongKeThongTin();
+//        this.getContainerListeners().setLayout(thongKeThongTin);
+        thongKeThongTin.setLocationRelativeTo(null);
+        thongKeThongTin.setResizable(true);
+        thongKeThongTin.setVisible(true);
+    }//GEN-LAST:event_ThongKeThongTinBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ThongKeThamGiaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThongKeThamGiaBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    
+        ThongKeThamGia thongKeThamGia =  new ThongKeThamGia();
+        thongKeThamGia.setLocationRelativeTo(null);
+        thongKeThamGia.setResizable(true);
+        thongKeThamGia.setVisible(true);
+    }//GEN-LAST:event_ThongKeThamGiaBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton ThongKeThamGiaBtn;
+    private javax.swing.JButton ThongKeThongTinBtn;
     // End of variables declaration//GEN-END:variables
 }

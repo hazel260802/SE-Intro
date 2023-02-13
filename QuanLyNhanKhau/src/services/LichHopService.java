@@ -7,8 +7,11 @@ package services;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import models.CuocHopModel;
 import models.NhanKhauModel;
@@ -145,6 +148,65 @@ public class LichHopService {
         } catch (Exception mysqlException) {
             this.exceptionHandle(mysqlException.getMessage());
         }
+        return list;
+    }
+    
+    public List<CuocHopModel> statisticLichHop(int tuNguoi, int denNguoi,Date tuThoiGian,Date denThoiGian,String trangThai) {
+        List<CuocHopModel> list = new ArrayList<>();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+        String strDateFrom = dateFormat.format(tuThoiGian);  
+        String strDateTo = dateFormat.format(denThoiGian);  
+        String query = "SELECT ID, thoiGianHop,diaDiem,noiDungChinh, soNguoiThamGia"
+                + " FROM cuoc_hop"
+                + " WHERE (thoiGianHop BETWEEN '"
+                + strDateFrom + "'"
+                + " AND '"
+                + strDateTo + "' )"
+                + " \nAND soNguoiThamGia BETWEEN "
+                + tuNguoi
+                + " AND "
+                + denNguoi;
+        if (trangThai.equalsIgnoreCase("Toan bo")) {
+        } else if (trangThai.equalsIgnoreCase("Đa dien ra")) {
+            query += " AND thoiGianHop < NOW()";
+        } else if (trangThai.equalsIgnoreCase("Chua dien ra")) {
+            query += " AND thoiGianHop > NOW() ";
+        }
+          else if (trangThai.equalsIgnoreCase("Dien ra hom nay")) {
+            query += " AND thoiGianHop = NOW()";
+          }
+         try {
+            Connection connection = MysqlConnection.getMysqlConnection();
+            PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            int idCuocHop = -1;
+            while (rs.next()){
+                CuocHopModel cuocHop = new CuocHopModel();
+                idCuocHop = rs.getInt("ID");
+                cuocHop.setID(idCuocHop);
+                cuocHop.setThoiGianHop(rs.getDate("thoiGianHop"));
+                cuocHop.setDiaDiem(rs.getString("diaDiem"));
+                cuocHop.setNoiDungChinh(rs.getString("noiDungChinh"));
+                   
+                if(idCuocHop > 0){
+                    String sql = "SELECT COUNT(idNhanKhau) as soNguoiThamGia FROM thamGiaHop"
+                            +" WHERE thamGiaHop.idCuocHop = "+ idCuocHop;
+                    PreparedStatement prst = (PreparedStatement)connection.prepareStatement(sql);
+                    ResultSet rs_temp = prst.executeQuery();
+                    while(rs_temp.next()){
+                        cuocHop.setSoNguoiThamGia(rs_temp.getInt("soNguoiThamGia"));
+                    }
+                    prst.close();
+                }
+
+                list.add(cuocHop);
+                }
+            preparedStatement.close();
+            }
+            catch (Exception e) {
+             System.out.println(e.getMessage());
+        }
+        
         return list;
     }
         /*
